@@ -1,0 +1,35 @@
+import pygame, sys
+from pygame.locals import *
+from random import randint as rint
+pygame.init()
+WHITE=(255,255,255)
+screen=pygame.display.set_mode((640,480))
+WhITE=(255,255,255)
+RED=(255,0,0)
+FPS=pygame.time.Clock()
+
+class Snow:
+    def __init__(self):
+        self.p=[mp[0],mp[1]]
+        self.c=(rint(0,255),rint(0,255),rint(0,255))
+        self.r=rint(5,10)
+    def drawing(self):
+        pygame.draw.circle(screen,self.c,self.p,self.r,0)
+snows=[]
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    mp=pygame.mouse.get_pos()
+    print(f'x:{mp[0]},y:{mp[1]}')
+    snows.append(Snow())
+    screen.fill(WHITE)
+    for s in snows:
+        s.p[1]=s.p[1]+5
+        if s.p[1]>490:
+            del snows[snows.index(s)]
+        s.drawing()
+    pygame.display.update()
+
+    FPS.tick(24)
