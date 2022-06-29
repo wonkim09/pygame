@@ -1,0 +1,14 @@
+import pygame, sys
+from pygame.locals import *
+pygame.init()
+screen=pygame.display.set_mode((640,480))
+fImg=pygame.image.load("mydino.").convert()
+WHITE=(255,255,255)
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    screen.fill(WHITE)
+    screen.blit(fImg,(320,240))
+    pygame.display.update()
